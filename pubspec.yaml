@@ -1,0 +1,30 @@
+name: vega_embed_flutter_demo_page
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  vega_embed_flutter: ^0.1.0
+  http: ^0.12.0+4
+
+  flutter_portal: ^0.0.1+2
+
+  cupertino_icons: ^0.1.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  test: ^1.14.2
+
+flutter:
+  uses-material-design: true
+  assets:
+    - vega_lite_specs/
+    - vega_lite_specs/single_view_plots/bar_charts/
+    - vega_lite_specs/single_view_plots/histograms/
+    - vega_lite_specs/single_view_plots/scatter_plots/
