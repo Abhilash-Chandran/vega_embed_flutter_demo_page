@@ -39870,7 +39870,7 @@ M:function(a){var t=null
 return new B.vm(new G.KN(new F.Hr(),1,!0,!0,!0),t,C.m,!1,t,!0,C.qc,!0,t,1,C.ab,t)}}
 F.Hr.prototype={
 $2:function(a,b){P.fV("index is "+H.a(b))
-return new F.xG("/assets/vega_lite_specs",$.a3k[b],H.b([],u.E),null)},
+return new F.xG("/vega_embed_flutter_demo_page/assets/vega_lite_specs",$.a3k[b],H.b([],u.E),null)},
 $C:"$2",
 $R:2}
 F.xG.prototype={
