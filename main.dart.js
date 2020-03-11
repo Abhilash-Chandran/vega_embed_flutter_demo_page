@@ -39833,9 +39833,9 @@ t=document
 s=t.createElement("div")
 s.id=o.a.c
 r=s.style
-r.width="500px"
+r.width="100vw"
 r=s.style
-r.height="500px"
+r.height="100vh"
 o.e=s
 s=t.createElement("body")
 o.d=s
@@ -39870,7 +39870,7 @@ M:function(a){var t=null
 return new B.vm(new G.KN(new F.Hr(),1,!0,!0,!0),t,C.m,!1,t,!0,C.qc,!0,t,1,C.ab,t)}}
 F.Hr.prototype={
 $2:function(a,b){P.fV("index is "+H.a(b))
-return new F.xG("/vega_embed_flutter_demo_page/assets/vega_lite_specs",$.a3k[b],H.b([],u.E),null)},
+return new F.xG("assets/vega_lite_specs",$.a3k[b],H.b([],u.E),null)},
 $C:"$2",
 $R:2}
 F.xG.prototype={
@@ -42845,7 +42845,7 @@ $.bl=null
 $.by=P.z(H.a1("ev<ak<a3>>"),u.I)
 $.aM=1
 $.a3k=function(){var t=u.s,s=H.a1("q<n<o>>"),r=u.N
-return H.b([P.bg(["single_view_plots",P.bg(["bar_charts",H.b([H.b(["bar_chart.json","Simple Bar Chart"],t),H.b(["responsive_bar_chart.vl.json","A responsive Bar Chart."],t),H.b(["stacked_bar_chart_rounded_corner.vl.json","A stacked bar chart \n with rounded corners"],t),H.b(["diverging_stacked_bar.vl.json","A diverging stacked bar chart."],t)],s),"histograms",H.b([H.b(["binned_histogram.json","Histogram wiht binned data"],t),H.b(["stacked_density_estimates.vl.json","Stacked Denisity Estimates"],t),H.b(["2d_histogram_heatmap.vl.json","A 2D Histogram HeatMap"],t),H.b(["layered_histogram.vl.json","Layered Histogram"],t)],s),"scatter_plots",H.b([H.b(["colored_scatter_plot.vl.json","Colored Scatter Plot"],t),H.b(["bubble_plot.vl.json","Bubble Plot(Gapminder)"],t),H.b(["bubble_plot_natural_disaster.vl.json","Bubble Plot(Natural Disaster)"],t),H.b(["image_based_scatter.vl.json","Image Based Scatter Plot."],t),H.b(["scatter_with_filled_circles.vl.json","Scatter Plot with filled circles"],t)],s)],r,H.a1("n<n<o>>"))],r,H.a1("a0<o,n<n<o>>>"))],H.a1("q<a0<o,a0<o,n<n<o>>>>>"))}()})();(function lazyInitializers(){var t=hunkHelpers.lazy
+return H.b([P.bg(["single_view_plots",P.bg(["bar_charts",H.b([H.b(["bar_chart.json","Simple Bar Chart"],t),H.b(["responsive_bar_chart.vl.json","A responsive Bar Chart."],t),H.b(["stacked_bar_chart_rounded_corner.vl.json","A stacked bar chart \n with rounded corners"],t),H.b(["diverging_stacked_bar.vl.json","A diverging stacked bar chart."],t)],s),"histograms",H.b([H.b(["binned_histogram.json","Histogram wiht binned data"],t),H.b(["stacked_density_estimates.vl.json","Stacked Denisity Estimates"],t),H.b(["2d_histogram_heatmap.vl.json","A 2D Histogram HeatMap"],t),H.b(["layered_histogram.vl.json","Layered Histogram"],t)],s),"scatter_plots",H.b([H.b(["colored_scatter_plot.vl.json","Colored Scatter Plot"],t),H.b(["bubble_plot.vl.json","Bubble Plot(Gapminder)"],t),H.b(["bubble_plot_natural_disaster.vl.json","Bubble Plot(Natural Disaster)"],t),H.b(["image_based_scatter.vl.json","Image Based Scatter Plot."],t),H.b(["scatter_with_filled_circles.vl.json","Scatter Plot with filled Scatter"],t)],s)],r,H.a1("n<n<o>>"))],r,H.a1("a0<o,n<n<o>>>"))],H.a1("q<a0<o,a0<o,n<n<o>>>>>"))}()})();(function lazyInitializers(){var t=hunkHelpers.lazy
 t($,"a4S","Y4",function(){return H.Vq(0,0,1)})
 t($,"a4e","XC",function(){return J.X($.av.i(0,"PaintStyle"),"Stroke")})
 t($,"a4d","XB",function(){return J.X($.av.i(0,"PaintStyle"),"Fill")})

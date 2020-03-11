@@ -2,7 +2,7 @@
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "/index.html": "a6f095024d9897de3fbfc40ed2afb4d8",
-"/main.dart.js": "64c9e94b6ca140d6b5ff914d9572c62b",
+"/main.dart.js": "2d5ae3f4faca39c25e2254fb34d915ee",
 "/assets/vega_lite_specs/single_view_plots/bar_charts/bar_chart.json": "3fdb4fba1b1025a3d861bd19c2333f34",
 "/assets/vega_lite_specs/single_view_plots/bar_charts/responsive_bar_chart.vl.json": "d018cb4fc5e6fc8ec29e0e8c43427854",
 "/assets/vega_lite_specs/single_view_plots/bar_charts/responsive_bar_chart.vl.png": "d2cacfa3a9a11b1d12b337721a2da0a6",
