@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   vega_embed_flutter: ^0.1.0
   http: ^0.12.0+4
+  url_launcher: ^5.4.2
+  url_launcher_web: ^0.1.1+1
 
   flutter_portal: ^0.0.1+2
 
@@ -26,10 +28,10 @@ flutter:
   assets:
     - js/
     - css/
-    - vega_lite_specs/single_view_plots/bar_charts/
-    - vega_lite_specs/single_view_plots/histograms/
-    - vega_lite_specs/single_view_plots/scatter_plots/
-    - vega_lite_specs/single_view_plots/line_charts/
+    - vega_lite_specs/bar_histogram/bar_charts/
+    - vega_lite_specs/bar_histogram/histograms/
+    - vega_lite_specs/scatter_line/scatter_plots/
+    - vega_lite_specs/scatter_line/line_charts/
     - vega_lite_specs/composite_marks/error_bars_and_bands/
     - vega_lite_specs/composite_marks/box_plots/
     - vega_lite_specs/interactive/interactive/

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_portal/flutter_portal.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vega_embed_flutter/vega_embed_flutter.dart';
 import 'dart:ui' as ui;
 import 'dart:html';
@@ -131,43 +132,7 @@ List<Map<String, Map<String, List<List<String>>>>> sections = [
     },
   },
   {
-    'single_view_plots': {
-      'bar_charts': [
-        [
-          'bar_chart.json',
-          'Simple Bar Chart',
-        ],
-        [
-          'responsive_bar_chart.vl.json',
-          'A responsive Bar Chart.',
-        ],
-        [
-          'stacked_bar_chart_rounded_corner.vl.json',
-          'A stacked bar chart \n with rounded corners',
-        ],
-        [
-          'diverging_stacked_bar.vl.json',
-          'A diverging stacked bar chart.',
-        ]
-      ],
-      'histograms': [
-        [
-          'binned_histogram.json',
-          'Histogram wiht binned data',
-        ],
-        [
-          'stacked_density_estimates.vl.json',
-          'Stacked Denisity Estimates',
-        ],
-        [
-          '2d_histogram_heatmap.vl.json',
-          'A 2D Histogram HeatMap',
-        ],
-        [
-          'layered_histogram.vl.json',
-          'Layered Histogram',
-        ]
-      ],
+    'scatter_line': {
       'scatter_plots': [
         [
           'colored_scatter_plot.vl.json',
@@ -204,6 +169,46 @@ List<Map<String, Map<String, List<List<String>>>>> sections = [
           'Step Chart',
         ],
       ]
+    }
+  },
+  {
+    'bar_histogram': {
+      'bar_charts': [
+        [
+          'bar_chart.json',
+          'Simple Bar Chart',
+        ],
+        [
+          'responsive_bar_chart.vl.json',
+          'A responsive Bar Chart.',
+        ],
+        [
+          'stacked_bar_chart_rounded_corner.vl.json',
+          'A stacked bar chart \n with rounded corners',
+        ],
+        [
+          'diverging_stacked_bar.vl.json',
+          'A diverging stacked bar chart.',
+        ]
+      ],
+      'histograms': [
+        [
+          'binned_histogram.json',
+          'Histogram wiht binned data',
+        ],
+        [
+          'stacked_density_estimates.vl.json',
+          'Stacked Denisity Estimates',
+        ],
+        [
+          '2d_histogram_heatmap.vl.json',
+          'A 2D Histogram HeatMap',
+        ],
+        [
+          'layered_histogram.vl.json',
+          'Layered Histogram',
+        ]
+      ],
     },
   },
   {
@@ -243,38 +248,110 @@ class MyApp extends StatelessWidget {
       ),
       home: DefaultTabController(
         length: sections.length,
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(60),
-            child: AppBar(
-              bottom: TabBar(
-                  indicator: ShapeDecoration(
-                    color: Colors.amber[800],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10.0),
-                        topRight: Radius.circular(10.0),
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Scaffold(
+            resizeToAvoidBottomInset: true,
+            bottomSheet: BottomInfoBar(),
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(60),
+              child: AppBar(
+                backgroundColor: Colors.grey[850],
+                brightness: Brightness.light,
+                bottom: TabBar(
+                    unselectedLabelColor: Colors.grey[300],
+                    indicator: ShapeDecoration(
+                      color: Colors.amber[800],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10.0),
+                          topRight: Radius.circular(10.0),
+                        ),
                       ),
                     ),
-                  ),
-                  tabs: sections
-                      .map((e) => Container(
-                            height: 40,
-                            alignment: Alignment.center,
-                            child: Text(
-                              e.keys.first,
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                          ))
-                      .toList()),
+                    tabs: sections
+                        .map((e) => Container(
+                              height: 40,
+                              alignment: Alignment.center,
+                              child: Text(
+                                e.keys.first,
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                            ))
+                        .toList()),
+              ),
             ),
-          ),
-          body: TabBarView(
-            children: sections.map((e) => MainView(e)).toList(),
+            body: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TabBarView(
+                physics: NeverScrollableScrollPhysics(),
+                children: sections.map((e) => MainView(e)).toList(),
+              ),
+            ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class BottomInfoBar extends StatelessWidget {
+  const BottomInfoBar({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        Icon(
+          Icons.info_outline,
+          size: 27,
+          color: Colors.deepOrange,
+        ),
+        Material(
+          clipBehavior: Clip.antiAlias,
+          shape: BeveledRectangleBorder(
+              // side: BorderSide(color: Colors.blue), if you need
+              borderRadius: BorderRadius.only(
+            topRight: Radius.circular(25.0),
+            bottomRight: Radius.circular(25.0),
+          )),
+          child: Container(
+            alignment: Alignment.center,
+            height: 50,
+            width: 300,
+            child: Text(
+              'All examples in this page are \ntaken from the vega-lite example page.',
+              softWrap: true,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+            decoration: BoxDecoration(
+              color: Colors.teal[300],
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+          ),
+        ),
+        IconButton(
+          alignment: Alignment.centerLeft,
+          onPressed: (() async {
+            const url = 'https://vega.github.io/vega-lite/examples/';
+            if (await canLaunch(url)) {
+              await launch(url);
+            }
+          }),
+          tooltip: 'Go to vega-lite site examples',
+          icon: Icon(
+            Icons.launch,
+            size: 18.0,
+          ),
+        )
+      ],
     );
   }
 }
@@ -317,15 +394,16 @@ class SectionPanel extends StatelessWidget {
             ),
             Divider(),
             Wrap(
+                runAlignment: WrapAlignment.spaceBetween,
                 children: value.map(
-              (chartInfo) {
-                // print(chartInfo.keys.first);
-                return ChartRendererElement(
-                  wrapElement: chartInfo,
-                  parentDir: '$rootDir/${sectionElements.keys.first}/$key',
-                );
-              },
-            ).toList())
+                  (chartInfo) {
+                    // print(chartInfo.keys.first);
+                    return ChartRendererElement(
+                      wrapElement: chartInfo,
+                      parentDir: '$rootDir/${sectionElements.keys.first}/$key',
+                    );
+                  },
+                ).toList())
           ],
         ));
       });
@@ -377,18 +455,54 @@ class _ChartRendererElementState extends State<ChartRendererElement> {
                                 color: Colors.black87,
                               ),
                             )),
-                            child: JsonViewer(
-                              assetPath: widget.parentDir +
-                                  '/' +
-                                  widget.wrapElement[0],
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: JsonViewer(
+                                assetPath: widget.parentDir +
+                                    '/' +
+                                    widget.wrapElement[0],
+                              ),
                             ),
                           )),
                       Expanded(
                         flex: 4,
-                        child: VegaLiteEmbedder(
-                            viewFactoryId: widget.wrapElement[0],
-                            vegaLiteSpecLocation:
-                                widget.parentDir + '/' + widget.wrapElement[0]),
+                        child: Column(
+                          children: <Widget>[
+                            Expanded(
+                              flex: 3,
+                              child: VegaLiteEmbedder(
+                                  viewFactoryId: widget.wrapElement[0],
+                                  vegaLiteSpecLocation: widget.parentDir +
+                                      '/' +
+                                      widget.wrapElement[0]),
+                            ),
+                            SelectableText(
+                              'Flutter Web Code',
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontSize: 15,
+                                color: Colors.blueGrey,
+                              ),
+                            ),
+                            Divider(),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SelectableText(
+                                  '''
+                                VegaLiteEmbedder(
+                                  viewFactoryId: ${widget.wrapElement[0].split('\\').last},
+                                  vegaLiteSpecLocation: ${widget.parentDir + '/' + widget.wrapElement[0]});
+                                ''',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 20),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(14.0),
@@ -476,11 +590,28 @@ class _JsonViewerState extends State<JsonViewer> {
           );
         }
         if (snapshot.hasData) {
-          if (!body.contains(pre)) {
-            body.append(pre);
-            pre.appendHtml('<code class="json">${snapshot.data}<code>');
-          }
-          return HtmlElementView(viewType: widget.assetPath + '_');
+          // if (!body.contains(pre)) {
+          //   body.append(pre);
+          //   body.append(DivElement()..text = 'Hello world');
+          //   pre.appendHtml('<div class="json">${snapshot.data}<div>');
+          // }
+          // return HtmlElementView(viewType: widget.assetPath + '_');
+          return Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  widget.assetPath.split('/').last,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+              Divider(),
+              Expanded(child: SelectableText(snapshot.data)),
+            ],
+          );
         }
         if (snapshot.error) {
           return SelectableText(
