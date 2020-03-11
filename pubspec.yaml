@@ -24,7 +24,17 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - vega_lite_specs/
+    - js/
+    - css/
     - vega_lite_specs/single_view_plots/bar_charts/
     - vega_lite_specs/single_view_plots/histograms/
     - vega_lite_specs/single_view_plots/scatter_plots/
+    - vega_lite_specs/single_view_plots/line_charts/
+    - vega_lite_specs/composite_marks/error_bars_and_bands/
+    - vega_lite_specs/composite_marks/box_plots/
+    - vega_lite_specs/interactive/interactive/
+    - vega_lite_specs/interactive_multiview/multiview/
+    - vega_lite_specs/layered_plots/labeling_annotation/
+    - vega_lite_specs/maps/geo/
+    - vega_lite_specs/multi_view_displays/repeat_and_concatenation/
+    - vega_lite_specs/multi_view_displays/trellis/
