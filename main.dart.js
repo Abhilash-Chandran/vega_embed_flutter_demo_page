@@ -44670,7 +44670,7 @@ H:function(a){var t,s,r=null,q=S.iR(new F.bJ(new Y.dD(C.x9,1,C.N),C.q,C.q,C.q),r
 p=N.a3b(!1,T.MZ(H.b([new U.l7(M.Zh(r,r,new M.or("logos/logo_flutter_1080px_clr.png",45,r,r)),r),L.jU("  Pub Package",r,r)],o),C.aH,C.aN,C.cv),C.aj,r,r,r,r,r,r,r,p,r,r,r,r,new F.FX(),r,r,r,r,r,r)
 t=C.iP.i(0,100)
 s=L.jU("Demo Repo",r,r)
-return M.cM(r,T.MZ(H.b([p,N.ZQ(r,t,L.x5(C.vy,r,25),s,new F.FY()),new R.Ao(1,r),L.x5(C.vJ,C.pl,22),N.ZQ(C.V.i(0,300),C.iP.i(0,100),L.x5(C.vO,r,15),L.jU("All examples are from this vega-lite page.",!0,A.fd(r,r,r,r,r,r,r,r,r,r,r,r,C.hv,r,r,r,!0,r,r,r,r,r,r)),new F.FZ())],o),C.aH,C.aN,C.cv),r,r,q,r,r,new V.aD(0,8,0,0),r)}}
+return M.cM(r,T.MZ(H.b([p,N.ZQ(r,t,L.x5(C.vy,r,25),s,new F.FY()),new R.Ao(1,r),L.x5(C.vJ,C.pl,22),N.ZQ(C.V.i(0,300),C.iP.i(0,100),L.x5(C.vO,r,15),L.jU("All examples are from this vega-lite page.",!0,A.fd(r,r,r,r,r,r,r,r,r,r,r,r,C.hv,r,r,r,!0,r,r,r,r,r,r)),new F.FZ())],o),C.aH,C.aN,C.cv),r,r,q,r,r,new V.aD(0,9,0,0),r)}}
 F.FX.prototype={
 $0:function(){var t=0,s=P.a3(u.P)
 var $async$$0=P.a_(function(a,b){if(a===1)return P.a0(b,s)
