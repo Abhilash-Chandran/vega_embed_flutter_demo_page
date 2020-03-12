@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_portal/flutter_portal.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:vega_embed_flutter/vega_embed_flutter.dart';
 import 'dart:ui' as ui;
 import 'dart:html';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:vega_embed_flutter/vega_embed_flutter.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 void main() async {
   runApp(MyApp());
@@ -237,12 +238,18 @@ List<Map<String, Map<String, List<List<String>>>>> sections = [
   }
 ];
 
+String splitCapitalize(String s) {
+  if (!s.contains('_')) {
+    return s[0].toUpperCase() + s.substring(1);
+  }
+  return s.split('_').map((e) => e[0].toUpperCase() + e.substring(1)).join(' ');
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      builder: (_, child) => Portal(child: child),
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
@@ -260,12 +267,14 @@ class MyApp extends StatelessWidget {
                 brightness: Brightness.light,
                 bottom: TabBar(
                     unselectedLabelColor: Colors.grey[300],
+                    indicatorColor: Colors.amber,
+                    indicatorPadding: EdgeInsets.only(bottom: 4.0),
                     indicator: ShapeDecoration(
-                      color: Colors.amber[800],
+                      color: Colors.grey,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10.0),
-                          topRight: Radius.circular(10.0),
+                          topLeft: Radius.circular(8.0),
+                          topRight: Radius.circular(8.0),
                         ),
                       ),
                     ),
@@ -274,9 +283,9 @@ class MyApp extends StatelessWidget {
                               height: 40,
                               alignment: Alignment.center,
                               child: Text(
-                                e.keys.first,
+                                splitCapitalize(e.keys.first),
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ))
                         .toList()),
@@ -297,61 +306,84 @@ class MyApp extends StatelessWidget {
 }
 
 class BottomInfoBar extends StatelessWidget {
-  const BottomInfoBar({
+  BottomInfoBar({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        Icon(
-          Icons.info_outline,
-          size: 27,
-          color: Colors.deepOrange,
+    return Container(
+      padding: EdgeInsets.only(top: 8.0),
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: Colors.amberAccent,
+          ),
         ),
-        Material(
-          clipBehavior: Clip.antiAlias,
-          shape: BeveledRectangleBorder(
-              // side: BorderSide(color: Colors.blue), if you need
-              borderRadius: BorderRadius.only(
-            topRight: Radius.circular(25.0),
-            bottomRight: Radius.circular(25.0),
-          )),
-          child: Container(
-            alignment: Alignment.center,
-            height: 50,
-            width: 300,
-            child: Text(
-              'All examples in this page are \ntaken from the vega-lite example page.',
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          FlatButton(
+              hoverColor: Colors.amber[100],
+              child: Row(
+                children: <Widget>[
+                  Image.asset('logos/logo_flutter_1080px_clr.png', scale: 45),
+                  Text('  Pub Package')
+                ],
+              ),
+              onPressed: () async {
+                const url = 'https://pub.dev/packages/vega_embed_flutter';
+                if (await canLaunch(url)) {
+                  await launch(url);
+                }
+              }),
+          FlatButton.icon(
+              hoverColor: Colors.amber[100],
+              label: Text(
+                'Demo Repo',
+              ),
+              icon: Icon(
+                FontAwesome.github,
+                size: 25,
+              ),
+              onPressed: () async {
+                const url =
+                    'https://github.com/Abhilash-Chandran/vega_embed_flutter_demo_page';
+                if (await canLaunch(url)) {
+                  await launch(url);
+                }
+              }),
+          Spacer(flex: 1),
+          Icon(
+            Icons.flag,
+            size: 22,
+            color: Colors.deepOrange,
+          ),
+          FlatButton.icon(
+            color: Colors.grey[300],
+            onPressed: () async {
+              const url = 'https://vega.github.io/vega-lite/examples/';
+              if (await canLaunch(url)) {
+                await launch(url);
+              }
+            },
+            hoverColor: Colors.amber[100],
+            icon: Icon(
+              Icons.launch,
+              size: 15,
+            ),
+            label: Text(
+              'All examples are from this vega-lite page.',
               softWrap: true,
               style: TextStyle(
-                fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
               ),
             ),
-            decoration: BoxDecoration(
-              color: Colors.teal[300],
-              borderRadius: BorderRadius.circular(15.0),
-            ),
           ),
-        ),
-        IconButton(
-          alignment: Alignment.centerLeft,
-          onPressed: (() async {
-            const url = 'https://vega.github.io/vega-lite/examples/';
-            if (await canLaunch(url)) {
-              await launch(url);
-            }
-          }),
-          tooltip: 'Go to vega-lite site examples',
-          icon: Icon(
-            Icons.launch,
-            size: 18.0,
-          ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }
@@ -384,7 +416,7 @@ class SectionPanel extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                key,
+                splitCapitalize(key),
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.bold,
@@ -527,8 +559,8 @@ class _ChartRendererElementState extends State<ChartRendererElement> {
         // });
       },
       child: Container(
-        width: 350,
-        height: 350,
+        width: 300,
+        height: 300,
         child: Column(
           children: <Widget>[
             Expanded(

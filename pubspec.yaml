@@ -14,18 +14,18 @@ dependencies:
   url_launcher: ^5.4.2
   url_launcher_web: ^0.1.1+1
 
-  flutter_portal: ^0.0.1+2
+  # flutter_portal: ^0.0.1+2
 
   cupertino_icons: ^0.1.3
+  flutter_icons: ^1.0.0+1
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   test: ^1.14.2
 
 flutter:
   uses-material-design: true
   assets:
+    - logos/
     - js/
     - css/
     - vega_lite_specs/bar_histogram/bar_charts/
