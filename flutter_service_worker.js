@@ -8,7 +8,7 @@ const RESOURCES = {
 "assets/FontManifest.json": "94a2494f1e7ff74a7d0b6cf4f3d4e39d",
 "assets/fonts/MaterialIcons-Regular.ttf": "56d3ffdef7a25659eab6a68a3fbfaf16",
 "assets/js/highlight.pack.js": "2572688ff47e60804fc3d0a761bae404",
-"assets/LICENSE": "3db8b26df1ed27bb3c0ea918e03e7952",
+"assets/LICENSE": "1e667d46075b92a2c9432354f00f8979",
 "assets/logos/logo_flutter_1080px_clr.png": "67642a0b80f3d50277c44cde8f450e50",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
 "assets/packages/flutter_icons/fonts/AntDesign.ttf": "3a2ba31570920eeb9b1d217cabe58315",
@@ -59,11 +59,11 @@ const RESOURCES = {
 "assets/vega_lite_specs/interactive/interactive/multi_series_line_tooltip.vl.png": "686a70bae79fc64f8726efe19da37b26",
 "assets/vega_lite_specs/interactive/interactive/query_widget.vl.json": "408d2d11b40212cfc10edcfaddca80b5",
 "assets/vega_lite_specs/interactive/interactive/query_widget.vl.png": "bbdb23dbb83895fee77d563813af342d",
-"assets/vega_lite_specs/interactive/interactive/rect_brush_view_data.vl.json": "12fa409018ed7596df10ba07e4595c94",
+"assets/vega_lite_specs/interactive/interactive/rect_brush_view_data.vl.json": "41ba4fd33e4a250df7a5232c737654af",
 "assets/vega_lite_specs/interactive/interactive/rect_brush_view_data.vl.png": "5a85feb6b3519561acba3c2db1fc8dd8",
-"assets/vega_lite_specs/interactive/interactive/scatter_pan_and_zoom.vl.json": "e5704505ea9fca92465628ab98e8dc57",
+"assets/vega_lite_specs/interactive/interactive/scatter_pan_and_zoom.vl.json": "ced2bdd166e1c07f8f8cda443131cce3",
 "assets/vega_lite_specs/interactive/interactive/scatter_pan_and_zoom.vl.png": "02ae5a2f8524ba856814ee1fd7ba4a1f",
-"assets/vega_lite_specs/interactive/interactive/scatter_rect_brush.vl.json": "bd2f34484d8d851c53143297fb376612",
+"assets/vega_lite_specs/interactive/interactive/scatter_rect_brush.vl.json": "6623d6de329034fafbfeba5cee8b4029",
 "assets/vega_lite_specs/interactive/interactive/scatter_rect_brush.vl.png": "0c8758d214e11d82d6b50d273345f169",
 "assets/vega_lite_specs/interactive_multiview/multiview/connection_airports.vl.json": "520a9b4fb0158020f0b30fc95e091e81",
 "assets/vega_lite_specs/interactive_multiview/multiview/connection_airports.vl.png": "c25f7e8b79393b57f185aba051ffe5c5",
@@ -111,7 +111,7 @@ const RESOURCES = {
 "assets/vega_lite_specs/scatter_line/scatter_plots/scatter_with_filled_circles.vl.png": "4611bf297a6cfddc278e15377eb0e53d",
 "index.html": "91db5d5cb3b957ff2f577b9c1a3239cd",
 "/": "91db5d5cb3b957ff2f577b9c1a3239cd",
-"main.dart.js": "ec09bcb4d4d4c3d9fc92868795190492"
+"main.dart.js": "5dd79b4b5c178b3c2e7061c434eea0cd"
 };
 
 self.addEventListener('activate', function (event) {
