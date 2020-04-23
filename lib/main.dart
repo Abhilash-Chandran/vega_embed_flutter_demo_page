@@ -1,11 +1,12 @@
-import 'dart:ui' as ui;
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:vega_embed_flutter/vega_embed_flutter.dart';
+import 'package:vega_embed_flutter/vega_embed_flutter.dart' hide Padding;
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:vega_embed_flutter_demo_page/code_box.dart';
 
 void main() async {
   runApp(MyApp());
@@ -489,10 +490,11 @@ class _ChartRendererElementState extends State<ChartRendererElement> {
                             )),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: JsonViewer(
+                              child: CodeViewer(
                                 assetPath: widget.parentDir +
                                     '/' +
                                     widget.wrapElement[0],
+                                lang: 'js',
                               ),
                             ),
                           )),
@@ -520,16 +522,13 @@ class _ChartRendererElementState extends State<ChartRendererElement> {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: SelectableText(
-                                  '''
-                                VegaLiteEmbedder(
-                                  viewFactoryId: ${widget.wrapElement[0].split('\\').last},
-                                  vegaLiteSpecLocation: ${widget.parentDir + '/' + widget.wrapElement[0]});
-                                ''',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 20),
+                                child: CodeBox(
+                                  lang: 'dart',
+                                  viewId: UniqueKey().toString(),
+                                  code: '''VegaLiteEmbedder(
+   viewFactoryId: ${widget.wrapElement[0].split('\\').last}, 
+   vegaLiteSpecLocation: ${widget.parentDir + '/' + widget.wrapElement[0]},
+);''',
                                 ),
                               ),
                             )
@@ -576,81 +575,107 @@ class _ChartRendererElementState extends State<ChartRendererElement> {
   }
 }
 
-class JsonViewer extends StatefulWidget {
+class CodeViewer extends StatelessWidget {
   final String assetPath;
+  final String lang;
 
-  JsonViewer({this.assetPath});
-
-  @override
-  _JsonViewerState createState() => _JsonViewerState();
-}
-
-class _JsonViewerState extends State<JsonViewer> {
-  final BodyElement body = BodyElement();
-  final PreElement pre = PreElement();
-
-  Future<String> jsonContent;
-
-  @override
-  void initState() {
-    AssetBundle defBundle = DefaultAssetBundle.of(context);
-    jsonContent =
-        defBundle.loadString(widget.assetPath.replaceAll('assets/', ''));
-    body.append(StyleElement()..text = jsonCss);
-    body.append(ScriptElement()..src = "/assets/js/highlight.pack.js");
-    body.append(ScriptElement()..text = 'hljs.initHighlightingOnLoad();');
-    // body.append(pre);
-    super.initState();
-  }
-
+  CodeViewer({@required this.assetPath, @required this.lang});
   @override
   Widget build(BuildContext context) {
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(widget.assetPath + '_',
-        (int viewId) {
-      return body;
-    });
     return FutureBuilder(
-      future: jsonContent,
-      builder: (context, AsyncSnapshot<String> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container(
-            alignment: Alignment.center,
-            height: 200,
-            width: 200,
+        future: DefaultAssetBundle.of(context)
+            .loadString(assetPath.replaceAll('assets/', '')),
+        builder: (context, AsyncSnapshot<String> snapshot) {
+          if (snapshot.hasData) {
+            return CodeBox(
+              code: snapshot.data,
+              viewId: UniqueKey().toString(),
+              lang: 'js',
+              hlEnd: 0,
+              hlStart: 0,
+            );
+          }
+          return Center(
             child: CircularProgressIndicator(),
           );
-        }
-        if (snapshot.hasData) {
-          // if (!body.contains(pre)) {
-          //   body.append(pre);
-          //   body.append(DivElement()..text = 'Hello world');
-          //   pre.appendHtml('<div class="json">${snapshot.data}<div>');
-          // }
-          // return HtmlElementView(viewType: widget.assetPath + '_');
-          return Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  widget.assetPath.split('/').last,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ),
-              Divider(),
-              Expanded(child: SelectableText(snapshot.data)),
-            ],
-          );
-        }
-        if (snapshot.error) {
-          return SelectableText(
-              'Something went wrong while fetching Vega-lite Spec');
-        }
-        return SelectableText('Sorry could not fetch the Vega-lite Spec');
-      },
-    );
+        });
   }
 }
+// class JsonViewer extends StatefulWidget {
+//   final String assetPath;
+
+//   JsonViewer({this.assetPath});
+
+//   @override
+//   _JsonViewerState createState() => _JsonViewerState();
+// }
+
+// class _JsonViewerState extends State<JsonViewer> {
+//   final BodyElement body = BodyElement();
+//   final PreElement pre = PreElement();
+
+//   Future<String> jsonContent;
+
+//   @override
+//   void initState() {
+//     AssetBundle defBundle = DefaultAssetBundle.of(context);
+//     jsonContent =
+//         defBundle.loadString(widget.assetPath.replaceAll('assets/', ''));
+//     body.append(StyleElement()..text = jsonCss);
+//     body.append(ScriptElement()..src = "/assets/js/highlight.pack.js");
+//     body.append(ScriptElement()..text = 'hljs.initHighlightingOnLoad();');
+//     // body.append(pre);
+//     super.initState();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     // ignore: undefined_prefixed_name
+//     ui.platformViewRegistry.registerViewFactory(widget.assetPath + '_',
+//         (int viewId) {
+//       return body;
+//     });
+//     return FutureBuilder(
+//       future: jsonContent,
+//       builder: (context, AsyncSnapshot<String> snapshot) {
+//         if (snapshot.connectionState == ConnectionState.waiting) {
+//           return Container(
+//             alignment: Alignment.center,
+//             height: 200,
+//             width: 200,
+//             child: CircularProgressIndicator(),
+//           );
+//         }
+//         if (snapshot.hasData) {
+//           // if (!body.contains(pre)) {
+//           //   body.append(pre);
+//           //   body.append(DivElement()..text = 'Hello world');
+//           //   pre.appendHtml('<div class="json">${snapshot.data}<div>');
+//           // }
+//           // return HtmlElementView(viewType: widget.assetPath + '_');
+//           return Column(
+//             children: <Widget>[
+//               Padding(
+//                 padding: const EdgeInsets.all(8.0),
+//                 child: Text(
+//                   widget.assetPath.split('/').last,
+//                   style: TextStyle(
+//                     fontWeight: FontWeight.bold,
+//                     fontStyle: FontStyle.italic,
+//                   ),
+//                 ),
+//               ),
+//               Divider(),
+//               Expanded(child: SelectableText(snapshot.data)),
+//             ],
+//           );
+//         }
+//         if (snapshot.error) {
+//           return SelectableText(
+//               'Something went wrong while fetching Vega-lite Spec');
+//         }
+//         return SelectableText('Sorry could not fetch the Vega-lite Spec');
+//       },
+//     );
+//   }
+// }

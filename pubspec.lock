@@ -49,7 +49,7 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.14.11"
+    version: "1.14.12"
   convert:
     dependency: transitive
     description:
@@ -400,7 +400,7 @@ packages:
       name: vega_embed_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0"
+    version: "0.5.0+2"
   vm_service:
     dependency: transitive
     description:
