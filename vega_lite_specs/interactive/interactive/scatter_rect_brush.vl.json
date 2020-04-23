@@ -5,7 +5,7 @@
     "url": "https://raw.githubusercontent.com/vega/vega/master/docs/data/cars.json"
   },
   "width": 500,
-  "height": 400,
+  "height": 375,
   "selection": {
     "brush": {
       "type": "interval",
