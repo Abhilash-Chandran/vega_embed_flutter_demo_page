@@ -1,16 +1,17 @@
 # vega_embed_flutter_demo_page
 
-A new Flutter project.
+Full demo is live and available here.
 
-## Getting Started
+- 👉 https://abhilash-chandran.github.io/vega_embed_flutter_demo_page/
 
-This project is a starting point for a Flutter application.
+This repo is aimed at contianing various demos and examples of using vega_embed_flutter package.
 
-A few resources to get you started if this is your first Flutter project:
+- 📦 https://pub.dev/packages/vega_embed_flutter
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+The main repository for the package is
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 🚀 https://github.com/Abhilash-Chandran/vega_embed_flutter
+
+If you have any issues with the package please consider raising issue in the main repo and if you find issues with the demos from this page, then use the issues section of this repo.
+
+Thanks a lot for your understanding.❤ Wish you a nice day. 😊
